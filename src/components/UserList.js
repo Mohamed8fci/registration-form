@@ -12,10 +12,10 @@ const UserList = () => {
   const fetchUsers = () => {
     axios.get('https://localhost:7055/api/Users')
       .then(res => setUsers(res.data))
-      .catch(err => alert('An error occurred while fetching users.'));
+      .catch(err => alert('An error occurred while fetching users'));
   };
 
-  // Fetch users when the component mounts
+  
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -26,11 +26,11 @@ const UserList = () => {
   };
 
   return (
-    <>
+    <div className="container mt-5">
       {editMode ? (
         <RegistrationForm userToEdit={userToEdit} setEditMode={setEditMode} />
       ) : (
-        <table className="table">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>Name</th>
@@ -48,14 +48,14 @@ const UserList = () => {
                 <td>{user.phone}</td>
                 <td>{user.age}</td>
                 <td>
-                  <button type="button" onClick={() => handleEdit(user)}>Edit</button>
+                  <button type="button" className="btn btn-info" onClick={() => handleEdit(user)}>Edit</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
-    </>
+    </div>
   );
 };
 
